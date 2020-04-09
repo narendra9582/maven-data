@@ -28,8 +28,8 @@ pipeline{
 
         stage('SonarQube Analysis'){
             steps{
-                withSonarQubeEnv('sonar'){
-                    bat 'mvn sonar:sonar'
+                withSonarQubeEnv('sonarqube'){
+                    bat 'mvn sonar:sonarqube'
                 }
             }
         }
