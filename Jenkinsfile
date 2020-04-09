@@ -33,7 +33,7 @@ pipeline{
                 }
             }
         }
-    stage('Artifact Deploy'){
+    '''stage('Artifact Deploy'){
         steps{
             rtServer{
                 id: 'artifactory',
@@ -53,6 +53,6 @@ pipeline{
                 }'''
             }
         }
-    }
+    }'''
 }   
   
