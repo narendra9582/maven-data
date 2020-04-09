@@ -34,6 +34,8 @@ pipeline{
               }
               steps{
                   echo 'Sonar is successful'
+              }
           }
     }
 }
+
