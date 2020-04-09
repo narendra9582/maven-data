@@ -43,16 +43,17 @@ pipeline{
             }
             rtUpload{
                 serverId: 'artifactory',
-                spec: '''{
+                spec: {
                      "files": [
                      {
                               "pattern": ".war",
                               "target": "SpringMVCWebApp"
                         }
                     ]
-                }'''
+                }
             }
-        }'''
-    }
-}   
+        }
+     }'''
+   }   
+}
   
