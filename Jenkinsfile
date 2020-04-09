@@ -28,9 +28,10 @@ pipeline{
 
   
           stage('SonarQube analysis') {
-                   withSonarQubeEnv(credentialsId: '6fde699c09af6caea49f0f8e1c49830cd3f2e40b', installationName: 'sonar') { 
-                   sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.3:sonar'
-    }
-  }        
+                   def mvnHome = tool name: 'maven3.6', type: 'maven'
+              withSonarQubeEnv('sonar'){
+                  sh '${mvnHome}/bin/mvn sonar:sonar'
+              }
+          }
     }
 }
