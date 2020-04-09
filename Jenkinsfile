@@ -1,37 +1,49 @@
 pipeline{
-    agent any
-    
-    tools{
-        maven "maven3.6"
-    }
+   agent any
+tools{
+     maven 'maven3.6'
+}
 
  
+   stages {
 
-    stages {
-        stage('Code Checkout'){
-            steps{
-                git url: 'https://github.com/narendra9582/maven-data.git'
-            }
-        }
-        stage('Build Stage'){
-            steps{
-                bat 'mvn clean test'
-            }
-    }
-        stage('Unit Test Stage'){
-            steps{
-                echo 'Unit Test Passes Successfully'
-        }
-    }
-
-
-               stage('SonarQube Analysis'){
-            steps{
-                withSonarQubeEnv('sonarqube'){
-                    bat 'mvn sonar:sonarqube'
-                }
-            }
-         }
-      }   
-   }
-  
+              stage("Code Checkout") {
+                                steps {
+                                       git url: 'https://github.com/narendra9582/maven-data.git'
+                                      }
+                                     }
+              stage('Build Stage') {
+                               steps{
+                                        bat 'mvn package'
+                                     }
+                                    }
+              stage('Compile Stage'){
+                                steps{
+                                       bat 'mvn clean compile'
+                                      }
+                                     }
+              stage('Testing Stage'){
+                                steps{
+                                      bat 'mvn test'
+                                     } 
+                                    }
+              stage('build && SonarQube analysis'){
+                                steps {
+                                       withSonarQubeEnv('sonar') {
+                                                                     bat 'mvn clean package sonar:sonar'
+                                                                 } 
+                                      } 
+                                    }
+              stage('Deploy artifact'){
+                                steps{
+                                      rtServer (id: 'artifactory',url: 'http://localhost:8040/artifactory',username: 'admin',password: 'nardev.k1')
+                                      rtUpload (serverId: 'artifactory',spec: '''{"files": [{ "pattern": "/**.war","target": "maven_artifact/"}]}''')
+                                      }
+                                     }
+              stage('Deploy to tomcat'){
+                                steps{
+                                       bat "copy target\\HelloWorld.war \"C:\Users\narendrasharma\apache-tomcat-8.5.51-windows-x64\apache-tomcat-8.5.51\webapps""
+                                     }
+                                   }
+          }
+}
