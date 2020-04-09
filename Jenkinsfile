@@ -15,7 +15,7 @@ pipeline{
         }
         stage('Build Stage'){
             steps{
-                bat 'mvn clean install'
+                bat 'mvn clean test'
             }
     }
         stage('Unit Test Stage'){
