@@ -2,7 +2,7 @@ pipeline{
     agent any
     
     tools{
-        maven "Maven3.6"
+        maven "maven3.6"
     }
 
  
@@ -33,27 +33,6 @@ pipeline{
                 }
             }
         }
-    '''stage('Artifact Deploy'){
-        steps{
-            rtServer{
-                id: 'artifactory',
-                url: 'http://localhost:8040/artifactory',
-                username: 'admin',
-                password: 'nardev.k1'
-            }
-            rtUpload{
-                serverId: 'artifactory',
-                spec: {
-                     "files": [
-                     {
-                              "pattern": ".war",
-                              "target": "SpringMVCWebApp"
-                        }
-                    ]
-                }
-            }
-        }
-     }'''
    }   
 }
   
