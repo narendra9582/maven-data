@@ -26,13 +26,12 @@ pipeline{
 
  
 
-        stage('SonarQube Analysis'){
-            steps{
-                withSonarQubeEnv('Sonar_Qube'){
-                    bat 'mvn sonar:sonar'
-                }
-            }
-        }
+  stage('SonarQube analysis') {
+    def scannerHome = tool 'SonarScanner 4.0';
+    withSonarQubeEnv('My SonarQube Server') {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+  }
             
     }
 }
