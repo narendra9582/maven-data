@@ -1,41 +1,10 @@
-pipeline{
-    agent any
-    
-    tools{
-        maven "maven3.6"
+node {
+  stage('SCM') {
+    git url: 'https://github.com/narendra9582/maven-data.git'
+  }
+  stage('SonarQube analysis') {
+    withSonarQubeEnv(credentialsId: 'f225455e-ea59-40fa-8af7-08176e86507a', installationName: 'My SonarQube Server') { // You can override the credential to be used
+      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar'
     }
-
- 
-
-    stages {
-        stage('Code Checkout'){
-            steps{
-                git url: 'https://github.com/narendra9582/maven-data.git'
-            }
-        }
-        stage('Build Stage'){
-            steps{
-                bat 'mvn clean test'
-            }
-    }
-        stage('Unit Test Stage'){
-            steps{
-                echo 'Unit Test Passes Successfully'
-        }
-    }
-
- 
-
-  
-          stage('SonarQube analysis') {
-                   def mvnHome = tool name: 'maven3.6', type: 'maven'
-              withSonarQubeEnv('sonar'){
-                  sh '${mvnHome}/bin/mvn sonar:sonar'
-              }
-              steps{
-                  echo 'Sonar is successful'
-              }
-          }
-    }
+  }
 }
-
