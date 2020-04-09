@@ -33,26 +33,6 @@ pipeline{
                 }
             }
         }
-    stage('Artifact Deploy'){
-        steps{
-            rtServer{
-                id: 'maven_artifactory',
-                url: 'http://localhost:8040/artifactory',
-                username: 'admin',
-                password: 'nardev.k1'
-            }
-            rtUpload{
-                serverId: 'artifactory',
-                spec: '''{
-                     "files": [
-                     {
-                              "pattern": ".war",
-                              "target": "SpringMVCWebApp"
-                        }
-                    ]
-                }"""
-            }
-        }
+            
     }
-}
      
