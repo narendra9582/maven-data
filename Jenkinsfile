@@ -27,11 +27,11 @@ pipeline{
 
            stage('SonarQube analysis') {
                steps{
-                withSonarQubeEnv('sonarqube'){
+                withSonarQubeEnv('sonar'){
                     bat 'mvn sonar:sonar'
                 }
             }
-                 withSonarQubeEnv(credentialsId: '6fde699c09af6caea49f0f8e1c49830cd3f2e40b', installationName: 'sonarqube') {
+                 withSonarQubeEnv(credentialsId: '6fde699c09af6caea49f0f8e1c49830cd3f2e40b', installationName: 'sonar') {
                  sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
                  }
                  
