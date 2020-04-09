@@ -32,6 +32,8 @@ pipeline{
               withSonarQubeEnv('sonar'){
                   sh '${mvnHome}/bin/mvn sonar:sonar'
               }
+              steps{
+                  echo 'Sonar is successful'
           }
     }
 }
