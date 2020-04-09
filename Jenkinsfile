@@ -42,7 +42,7 @@ tools{
                                      }
               stage('Deploy to tomcat'){
                                 steps{
-                                       bat "copy target\\HelloWorld.war \"C:/Users/narendrasharma/apache-tomcat-8.5.51-windows-x64/apache-tomcat-8.5.51/webapps""
+                                       bat "copy target\\HelloWorld.war \"C:\\Users\narendrasharma\apache-tomcat-8.5.51-windows-x64\apache-tomcat-8.5.51\webapps""
                                      }
                                    }
           }
