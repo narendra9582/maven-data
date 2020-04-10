@@ -40,5 +40,7 @@ tools{
                                       rtUpload (serverId: 'artifactory',spec: '''{"files": [{ "pattern": "/**.war","target": "maven_artifact/"}]}''')
                                       }
                                      }
+      
+      
                                    }
 }
