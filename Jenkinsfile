@@ -14,7 +14,8 @@ pipeline{
                                      }
               stage('Build Stage') {
                                steps{
-                                        bat 'mvn package'
+                                        def pack_data = 'mvn package'
+                                        bat pack_data
                                      }
                                     }
               stage('Compile Stage'){
