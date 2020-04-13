@@ -40,6 +40,11 @@ pipeline{
                                       rtUpload (serverId: 'artifactory',spec: '''{"files": [{ "pattern": "/**.war","target": "maven_artifact/"}]}''')
                                       }
                                      }
+               stage('Deploy to tomcat'){
+                                steps{
+                                       bat "copy target\\HelloWorld.war \'C:\\Users\\narendrasharma\\apache-tomcat-8.5.51-windows-x64\\apache-tomcat-8.5.51\\webapps\'"
+                                     }
+                                   }
         
        
     
