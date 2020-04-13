@@ -1,4 +1,7 @@
-pipeline{
+pipeline{ environment {
+    registry = "docker_hub_account/repository_name"
+    registryCredential = 'dockerhub'
+  }  
    agent any 
    tools{
      maven 'maven3.6'
@@ -40,9 +43,16 @@ pipeline{
                                        bat "copy target\\narendra-mvn.war \"C:\\Users\\narendrasharma\\apache-tomcat-8.5.51-windows-x64\\apache-tomcat-8.5.51\\webapps\""
                                      }
                                    }
-        
+        stage('Building image') {
+      steps{
+        script {
+          docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
        
     
       
                                    }
 }
+
