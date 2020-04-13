@@ -30,7 +30,7 @@ pipeline{ environment {
                                       bat 'mvn test'
                                      } 
                                     }
-              stage('build && SonarQube analysis'){
+              stage('SonarQube analysis'){
                                 steps {
                                        withSonarQubeEnv('sonar') {
                                                                      bat 'mvn clean package sonar:sonar'
