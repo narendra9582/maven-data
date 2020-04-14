@@ -1,1 +1,2 @@
 
+CMD["docker stop narendra-mvn","docker rm narendra-mvn"]
