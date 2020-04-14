@@ -37,6 +37,12 @@ pipeline{ environment {
                                                                  } 
                                       } 
                                     }
+                     stage('Deploy artifact'){
+                                steps{
+                                      rtServer (id: 'artifactory',url: 'http://localhost:8040/artifactory',username: 'admin',password: 'nardev.k1')
+                                      rtUpload (serverId: 'artifactory',spec: '''{"files": [{ "pattern": "/**.war","target": "maven_artifact/"}]}''')
+                                      }
+                                     }
 
                stage('Deploy to tomcat'){
                                 steps{
