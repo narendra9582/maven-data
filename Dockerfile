@@ -1,5 +1,6 @@
 FROM tomcat:8.5-alpine
-RUN apt-get update && apt-get install -y nano
+RUN apt-get update
+RUN apt-get install -y nano
 RUN mkdir -p /usr/local/tomcat/conf
 COPY tomcat-users.xml /usr/local/tomcat/conf/
 #COPY context.xml /usr/local/tomcat/webapps/manager/META-INF/
