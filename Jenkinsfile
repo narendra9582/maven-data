@@ -22,7 +22,7 @@ pipeline{ environment {
                                     }
               stage('Compile Stage'){
                                 steps{
-                                       bat 'mvn clean compile'
+                                       bat 'mvn compile'
                                       }
                                      }
               stage('Testing Stage'){
