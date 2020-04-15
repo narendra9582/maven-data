@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.narendra</groupId>
-  <artifactId>narendra-mvn + ${BUILD_NUMBER}</artifactId>
+  <artifactId>narendra-mvn</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>narendra-mvn Maven Webapp</name>
