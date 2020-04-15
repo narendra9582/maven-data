@@ -51,7 +51,7 @@ pipeline{ environment {
         stage('Building image') {
     steps{
       script {
-       dockerImage= docker.build registry + "$:Build_number"
+       dockerImage= docker.build registry + "${BUILD_NUMBER}"
       }
     }
   }
