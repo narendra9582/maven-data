@@ -51,21 +51,21 @@ pipeline{ environment {
 
        stage('Building image') {
            steps{
-               bat 'docker build -t narendra9582/narendra:${BUILD_NUMBER} .'
+               bat 'docker build -t narendra9582/narendra:%BUILD_NUMBER% .'
            }
        }
        stage('Deploy image') {
            
            
     steps{
-        bat 'docker push narendra9582/narendra:${BUILD_NUMBER}'
+        bat 'docker push narendra9582/narendra:%BUILD_NUMBER%'
     }
 }
        
        stage('Kill older container & Run container'){
            steps{
                bat 'docker rm narendra-mvn'
-               bat 'docker run -d --name narendra-mvn -p 80:8080 narendra9582/narendra:${BUILD_NUMBER}'
+               bat 'docker run -d --name narendra-mvn -p 80:8080 narendra9582/narendra:%BUILD_NUMBER%'
            }
        }
    }
