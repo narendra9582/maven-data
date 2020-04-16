@@ -48,13 +48,6 @@ pipeline{ environment {
                                        bat "copy target\\narendra-mvn.war \"C:\\Users\\narendrasharma\\apache-tomcat-8.5.51-windows-x64\\apache-tomcat-8.5.51\\webapps\""
                                      }
                                    }
-        stage('Building image') {
-    steps{
-      script {
-       dockerImage= docker.build registry + ":${BUILD_NUMBER}"
-      }
-    }
-  }
   
   stage('Deploy Image') {
       steps{
@@ -65,9 +58,24 @@ pipeline{ environment {
         }
       }
     }
+       stage('Building image') {
+           steps{
+                 bat 'docker build -t narendra9582/narendra:image2 .'
+           }
+       }
+       stage('Deploy image') {
+           
+           
+    steps{
+        bat 'docker push narendra9582/narendra:image2'
+    }
+}
        
-    
-      
-                                   }
+       stage('Kill older container & Run container'){
+           steps{
+               bat 'docker run -d -p 80:8080 narendra9582/narendra:image2'
+           }
+       }
+   }
 }
 
