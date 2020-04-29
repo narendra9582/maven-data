@@ -62,12 +62,17 @@ pipeline{ environment {
         bat 'docker push narendra9582/narendra:%BUILD_NUMBER%'
     }
 }
-       
        stage('Kill older container & Run Latest container'){
+           
            steps{
-               bat 'docker rm -f narendra-mvn'
-               bat 'docker run -d --name narendra-mvn -p 80:8080 narendra9582/narendra:%BUILD_NUMBER%'
+                powershell returnStatus: true, script: '.\\kill_container.ps1'
+    }
+           
+           steps{
+                bat 'docker run -d --name narendra-mvn -p 80:8080 narendra9582/narendra:%BUILD_NUMBER%'
            }
+       
+       
        }
    }
 }
